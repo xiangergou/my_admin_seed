@@ -46,6 +46,10 @@ module.exports = {
         loader: 'vue-loader',
         options: vueLoaderConfig
       },
+      {  //手动添加这一条，相当于是编译识别sass!
+        test: /\.scss$/,
+        loaders: ["style", "css", "sass"]
+      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
