@@ -6,19 +6,24 @@
       background-color="#423C6E"
       text-color="#fff"
       active-text-color="#fff">
-      <sidebar-item :routes="permission_routers"/>
+      <sidebar-item :routes="routes"/>
     </el-menu>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
 export default {
   components: { SidebarItem },
+  data () {
+    return {
+      routes: []
+    }
+  },
   computed: {
-    ...mapGetters([
-      'permission_routers'
-    ])
+    // ...mapGetters([
+    //   'permission_routers'
+    // ])
   }
 }
 </script>

@@ -1,8 +1,8 @@
 /*
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 17:11:36
- * @Last Modified by: FT.FE.Bolin
- * @Last Modified time: 2018-09-25 20:02:33
+ * @Last Modified by: ergou_xiang
+ * @Last Modified time: 2019-01-09 17:09:01
  */
 
 <template>
@@ -38,7 +38,7 @@
           </template>
           <div
             v-for="(child, childIndex) in item.children"
-            v-if="!child.hidden"
+            v-show="!child.hidden"
             :key="childIndex">
             <template>
               <sidebar-item

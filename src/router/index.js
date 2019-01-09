@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../views/layout/Layout'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
@@ -14,7 +13,7 @@ export const constantRouterMap = [{
   children: [{
     name: '首页',
     path: 'dashboard',
-    component: HelloWorld
+    component: () => import('@/views/dashboard/index')
   }]
 }]
 
