@@ -2,12 +2,12 @@
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 17:11:02
  * @Last Modified by: ergou_xiang
- * @Last Modified time: 2019-01-09 17:30:24
+ * @Last Modified time: 2019-01-09 17:57:56
  */
 
 <template>
   <div class="layout-container">
-    <p style="margin-top: 0;">超级管理员 liuxia</p>
+    <p style="margin-top: 0;margin-bottom: 15px;">【超级管理员】 liuxia</p>
     <div class="img-banner"/>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
   height: 50vh;
   border-radius: 10px;
   background-color: #2d3a4b;
-  background-image: url(../../assets/banner1.jpg);
+  background-image: url(../../assets/banner.jpg);
   background-size: cover;
   background-position: center center;
 }
