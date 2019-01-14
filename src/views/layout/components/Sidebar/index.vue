@@ -1,3 +1,10 @@
+/*
+ * @Author: liuxia
+ * @Date: 2019-01-14 22:11:41
+ * @Last Modified by: liuxia
+ * @Last Modified time: 2019-01-14 22:11:41
+ */
+
 <template>
   <div class="layout-side">
     <el-menu
@@ -6,24 +13,19 @@
       background-color="#423C6E"
       text-color="#fff"
       active-text-color="#fff">
-      <sidebar-item :routes="routes"/>
+      <sidebar-item :routes="permission_routers"/>
     </el-menu>
   </div>
 </template>
 <script>
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
 export default {
   components: { SidebarItem },
-  data () {
-    return {
-      routes: []
-    }
-  },
   computed: {
-    // ...mapGetters([
-    //   'permission_routers'
-    // ])
+    ...mapGetters([
+      'permission_routers'
+    ])
   }
 }
 </script>

@@ -1,8 +1,8 @@
 /*
- * @Author: FT.FE.Bolin
- * @Date: 2018-04-11 17:11:36
- * @Last Modified by: ergou_xiang
- * @Last Modified time: 2019-01-09 17:09:01
+ * @Author: liuxia
+ * @Date: 2019-01-14 22:19:28
+ * @Last Modified by: liuxia
+ * @Last Modified time: 2019-01-14 22:19:28
  */
 
 <template>
@@ -101,7 +101,7 @@ export default {
   align-content: center;
 }
 .el-menu-item.is-active {
-  background-color:rgba(41, 44, 207, 1) !important;
+  background-color:rgb(88, 176, 226) !important;
   .inlineBlock {
     transform: translate(-6px)
   }
@@ -111,7 +111,7 @@ export default {
   display: inline-block;
   width: 100%;
   &.router-link-active {
-    border-left: 6px solid #1E52FF;
+    border-left: 6px solid rgb(44, 52, 172);
   }
 }
 

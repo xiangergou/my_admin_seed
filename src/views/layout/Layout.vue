@@ -1,8 +1,8 @@
 /*
  * @Author: ergou_xiang
  * @Date: 2019-01-07 13:19:00
- * @Last Modified by: ergou_xiang
- * @Last Modified time: 2019-01-09 17:24:47
+ * @Last Modified by: liuxia
+ * @Last Modified time: 2019-01-14 13:43:10
  */
 <template>
   <div class="app-wrapper">
@@ -75,7 +75,7 @@ export default {
     padding-left: 18px;
     box-sizing: border-box;
     font-size: 20px;
-    color: #fff;
+    color: #409EFF;
     img {
       height: 32px;
       margin-right: 20px;

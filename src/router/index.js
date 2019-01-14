@@ -31,3 +31,11 @@ export default new Router({
   }), // 后退后页面位置
   routes: constantRouterMap
 })
+
+export const asyncRouterMap = [
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
+  }
+]
