@@ -2,7 +2,7 @@
  * @Author: liuxia
  * @Date: 2019-01-14 22:11:41
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-14 22:11:41
+ * @Last Modified time: 2019-01-15 18:52:30
  */
 
 <template>
@@ -29,12 +29,13 @@ export default {
   }
 }
 </script>
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style lang="scss" scoped>
 .el-menu {
   min-height: 100%;
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
   border-right: 0;
+  box-sizing: border-box;
 }
 </style>

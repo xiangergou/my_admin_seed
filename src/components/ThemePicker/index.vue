@@ -1,8 +1,8 @@
 /*
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 17:04:21
- * @Last Modified by: FT.FE.Bolin
- * @Last Modified time: 2018-09-18 14:31:25
+ * @Last Modified by: liuxia
+ * @Last Modified time: 2019-01-15 18:54:41
  */
 
 <template>
@@ -18,7 +18,7 @@ const version = require('element-ui/package.json').version
 const ORIGINAL_THEME = '#409EFF'
 let coverTheme = localStorage.getItem('ORIGINAL_THEME')
 if (!coverTheme) {
-  coverTheme = '#4680ff'
+  coverTheme = '#409EFF'
   localStorage.setItem('ORIGINAL_THEME', coverTheme)
 }
 

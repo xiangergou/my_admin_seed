@@ -2,7 +2,7 @@
  * @Author: liuxia
  * @Date: 2019-01-14 22:19:28
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-14 22:19:28
+ * @Last Modified time: 2019-01-15 18:55:03
  */
 
 <template>
@@ -101,7 +101,7 @@ export default {
   align-content: center;
 }
 .el-menu-item.is-active {
-  background-color:rgb(88, 176, 226) !important;
+  background-color: #409EFF  !important;
   .inlineBlock {
     transform: translate(-6px)
   }
@@ -111,7 +111,7 @@ export default {
   display: inline-block;
   width: 100%;
   &.router-link-active {
-    border-left: 6px solid rgb(44, 52, 172);
+    border-left: 6px solid rgb(209, 204, 208);
   }
 }
 

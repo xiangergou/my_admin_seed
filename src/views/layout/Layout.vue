@@ -2,10 +2,10 @@
  * @Author: ergou_xiang
  * @Date: 2019-01-07 13:19:00
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-14 13:43:10
+ * @Last Modified time: 2019-01-15 18:51:31
  */
 <template>
-  <div class="app-wrapper">
+  <div class="app-wrapper" :class="{hideSidebar:!sidebar.opened}">
     <div class="sidebar-wrapper">
       <div class="sidebar_logo">
         <img src="../../assets/logo.png">
@@ -31,9 +31,9 @@ export default {
     AppMain
   },
   computed: {
-    // sidebar () {
-    //   return this.$store.state.app.sidebar
-    // }
+    sidebar () {
+      return this.$store.state.app.sidebar
+    }
   }
 }
 </script>
@@ -45,29 +45,57 @@ export default {
 .app-wrapper{
   width: 100%;
   overflow: auto;
-  display: flex;
+  position: relative;
+  &.hideSidebar {
+    .sidebar-wrapper {
+      transform: translate(-140px, 0);
+      overflow-x: hidden;
+      .sidebar_logo,
+      .sidebar-container {
+        transform: translate(140px, 0);
+      }
+      &:hover {
+        transform: translate(0, 0);
+        .sidebar_logo,
+        .sidebar-container {
+          transform: translate(0, 0);
+        }
+      }
+    }
+    .main-wrapper {
+      margin-left: 60px;
+    }
+  }
   .sidebar-wrapper{
     width: 200px;
-    height: 100vh;
-    // position: fixed;
-    // top: 0;
-    // bottom: 0;
-    // left: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
     z-index: 1001;
+    height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    background: #409EFF;
+    background: rgb(66, 60, 110);
+    box-sizing: border-box;
     transition: all .28s ease-out;
     box-shadow: 2px 0 6px rgba(0, 0, 0, .35);
   }
-  .main-wrapper{
-    flex: 1;
-    min-height: 100%;
-    width: 100%;
+  .sidebar-container {
     transition: all .28s ease-out;
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  .main-wrapper{
+    min-height: 100%;
+    transition: all .28s ease-out;
+    margin-left: 200px;
   }
   .sidebar_logo {
-    width: 100%;
+    width: 200px;
     height: 60px;
     background: rgb(66, 60, 110);
     display: flex;
@@ -75,7 +103,7 @@ export default {
     padding-left: 18px;
     box-sizing: border-box;
     font-size: 20px;
-    color: #409EFF;
+    color: #f8f8f8;
     img {
       height: 32px;
       margin-right: 20px;

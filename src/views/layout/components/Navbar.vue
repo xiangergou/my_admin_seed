@@ -5,6 +5,10 @@
       mode="horizontal">
 
       <!-- tabBar -->
+      <hamburger
+        :toggle-click="toggleSideBar"
+        :is-active="sidebar.opened"
+        class="hamburger-container"/>
       <tags-view/>
       <div class="right_container">
         <div class="right-menu">
@@ -58,22 +62,34 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import ThemePicker from '@/components/ThemePicker'
 import TagsView from './TagsView'
 export default {
   name: 'Navbar',
   components: {
+    Hamburger,
     Screenfull,
     ThemePicker,
     TagsView
   },
   data () {
     return {
-      name: 'liuxia'
     }
   },
+  computed: {
+    ...mapGetters([
+      'sidebar',
+      'avatar',
+      'name'
+    ])
+  },
   methods: {
+    toggleSideBar () {
+      this.$store.dispatch('ToggleSideBar')
+    },
     logout () {
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
@@ -94,6 +110,8 @@ export default {
     align-content: center;
     align-items: center;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+    padding: 0 10px;
+    box-sizing: border-box;
   }
   .right_container {
     position: absolute;
