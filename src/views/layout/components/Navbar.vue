@@ -1,3 +1,10 @@
+/*
+ * @Author: liuxia
+ * @Date: 2019-01-16 10:13:02
+ * @Last Modified by: liuxia
+ * @Last Modified time: 2019-01-16 10:13:02
+ */
+
 <template>
   <div class="navbar-wrapper">
     <el-menu
@@ -29,7 +36,7 @@
             class="avatar-container right-menu-item"
             trigger="click">
             <div class="avatar-wrapper">
-              <img src="../../../assets/logo.png" style="width:30px;height:30px;background: #ccc">
+              <img :src="avatar"  class="user-avatar">
               <span class="user-name">{{ name }}</span>
               <i class="el-icon-arrow-down"/>
             </div>
@@ -57,7 +64,27 @@
           </el-dropdown>
         </div>
       </div>
-      </el-menu>
+    </el-menu>
+    <!-- 个人信息 -->
+    <el-dialog
+      :visible.sync="layer_showUserInfo"
+      title="个人信息"
+      width="600px"
+      @close="dialogClose">
+      <el-form
+        ref="ruleForm"
+        :model="ruleForm"
+        status-icon
+        label-width="100px">
+        <el-form-item
+          label="用户名"
+          prop="name">
+          <el-input
+            v-model="ruleForm.name"
+            disabled/>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -77,6 +104,10 @@ export default {
   },
   data () {
     return {
+      layer_showUserInfo: false,
+      ruleForm: {
+        name: this.$store.state.user.name
+      }
     }
   },
   computed: {
@@ -94,6 +125,9 @@ export default {
       this.$store.dispatch('LogOut').then(() => {
         location.reload() // 为了重新实例化vue-router对象 避免bug
       })
+    },
+    dialogClose () {
+      this.$refs.ruleForm.resetFields()
     }
   }
 }

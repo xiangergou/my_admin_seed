@@ -1,8 +1,8 @@
 /*
- * @Author: FT.FE.Bolin
- * @Date: 2018-04-11 17:23:00
- * @Last Modified by: FT.FE.Bolin
- * @Last Modified time: 2018-09-13 10:54:25
+ * @Author: liuxia
+ * @Date: 2019-01-16 10:14:04
+ * @Last Modified by: liuxia
+ * @Last Modified time: 2019-01-16 13:46:27
  */
 
 <template>
@@ -32,7 +32,7 @@
           <a
             class="link-type"
             href="https://www.mdguanjia.com"
-            target="_blank">杭州复恒科技有限公司</a>
+            target="_blank">杭州那啥有限公司</a>
         </div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">请检查您输入的网址是否正确，请点击以下按钮返回主页</div>
@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     message () {
-      return '复恒科技说了，这个页面你不能进......'
+      return '朕说了，这个页面你不能进......'
     }
   }
 }

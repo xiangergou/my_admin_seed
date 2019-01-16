@@ -2,7 +2,7 @@
  * @Author: ergou_xiang
  * @Date: 2019-01-07 13:19:00
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-15 18:51:31
+ * @Last Modified time: 2019-01-15 23:01:09
  */
 <template>
   <div class="app-wrapper" :class="{hideSidebar:!sidebar.opened}">
@@ -49,7 +49,6 @@ export default {
   &.hideSidebar {
     .sidebar-wrapper {
       transform: translate(-140px, 0);
-      overflow-x: hidden;
       .sidebar_logo,
       .sidebar-container {
         transform: translate(140px, 0);

@@ -2,7 +2,7 @@
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 17:04:21
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-15 18:54:41
+ * @Last Modified time: 2019-01-15 23:25:22
  */
 
 <template>
@@ -149,12 +149,15 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .theme-picker .el-color-picker__trigger {
   vertical-align: middle;
 }
 
 .theme-picker-dropdown .el-color-dropdown__link-btn {
+  display: none;
+}
+.el-color-dropdown__link-btn{
   display: none;
 }
 </style>

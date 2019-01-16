@@ -2,7 +2,7 @@
  * @Author: liuxia
  * @Date: 2019-01-13 22:22:04
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-14 21:44:37
+ * @Last Modified time: 2019-01-16 10:37:21
  */
 // import Vue from 'vue'
 import router from '../router'
@@ -19,6 +19,7 @@ router.beforeEach((to, from, next) => {
   if (getSessionId()) {
     if (to.path === '/login') {
       next({ path: '/' })
+      NProgress.done()
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('getUserInfo').then(res => {
@@ -45,10 +46,6 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     }
   }
-})
-
-router.afterEach(() => {
-  NProgress.done()
 })
 
 router.afterEach(() => {
