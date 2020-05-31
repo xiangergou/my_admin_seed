@@ -2,7 +2,7 @@
  * @Author: liuxia
  * @Date: 2019-01-15 17:41:32
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-15 18:47:51
+ * @Last Modified time: 2020-05-31 13:10:50
  */
 
 <template>
@@ -193,7 +193,7 @@ export default {
       line-height: 1.2;
       cursor: pointer;
       &:hover {
-        background: #ecf5ff;
+        background: pink;
         color: #66b1ff;
       }
     }

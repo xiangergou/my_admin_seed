@@ -9,7 +9,7 @@
     <div class="sidebar-wrapper">
       <div class="sidebar_logo">
         <img src="../../assets/logo.png">
-        XT Admin
+       留下
       </div>
       <sidebar class="sidebar-container"/>
     </div>
@@ -75,7 +75,7 @@ export default {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    background: rgb(66, 60, 110);
+    background: rgb(35, 60, 70);
     box-sizing: border-box;
     transition: all .28s ease-out;
     box-shadow: 2px 0 6px rgba(0, 0, 0, .35);
@@ -96,7 +96,7 @@ export default {
   .sidebar_logo {
     width: 200px;
     height: 60px;
-    background: rgb(66, 60, 110);
+    // background: rgb(66, 60, 110);
     display: flex;
     align-items: center;
     padding-left: 18px;

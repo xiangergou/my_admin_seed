@@ -2,7 +2,7 @@
  * @Author: liuxia
  * @Date: 2019-01-14 22:19:28
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-15 18:55:03
+ * @Last Modified time: 2020-05-31 13:40:47
  */
 
 <template>
@@ -118,5 +118,14 @@ export default {
 .el-submenu__title i,
 .el-menu-item i {
   color: #fff;
+}
+
+</style>
+<style >
+.el-submenu__title:hover{
+  background-color: pink !important
+}
+.el-menu-item:hover{
+  background-color: pink !important
 }
 </style>

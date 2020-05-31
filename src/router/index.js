@@ -38,6 +38,21 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
+    path: '/resources',
+    component: Layout,
+    redirect: 'noredirect',
+    name: '资源管理',
+    icon: 'example',
+    meta: {
+      role: ['admin', 'global']
+    },
+    children: [{
+      name: '文档数据',
+      path: 'booksTable',
+      component: () => import('@/views/resources/bookTable/index')
+    }]
+  },
+  {
     path: '*',
     redirect: '/404',
     hidden: true

@@ -2,7 +2,7 @@
  * @Author: liuxia
  * @Date: 2019-01-14 22:11:41
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-15 18:52:30
+ * @Last Modified time: 2020-05-31 13:13:26
  */
 
 <template>
@@ -10,7 +10,7 @@
     <el-menu
       :default-active="$route.path"
       mode="vertical"
-      background-color="#423C6E"
+      background-color="transparent"
       text-color="#fff"
       active-text-color="#fff">
       <sidebar-item :routes="permission_routers"/>

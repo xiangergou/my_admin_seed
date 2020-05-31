@@ -2,7 +2,7 @@
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 17:08:54
  * @Last Modified by: liuxia
- * @Last Modified time: 2019-01-14 21:45:19
+ * @Last Modified time: 2020-05-31 13:04:39
  */
 
 import {
@@ -50,6 +50,7 @@ const permission = {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
+      console.log(state.routers)
     }
   },
   actions: {
