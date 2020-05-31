@@ -1,9 +1,3 @@
-/*
- * @Author: FT.FE.Bolin
- * @Date: 2018-04-11 16:51:47
- * @Last Modified by: ergou_xiang
- * @Last Modified time: 2019-01-09 16:44:15
- */
 
 <template>
   <div

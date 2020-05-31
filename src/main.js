@@ -14,6 +14,8 @@ require('./utils/permission.js')
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
+// Vue.config.performance = true
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
