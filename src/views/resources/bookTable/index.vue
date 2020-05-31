@@ -130,11 +130,10 @@ export default {
             }
           }
         },
-        {prop: 'title', label: '标题'},
-        {prop: 'picUrl', label: '图片', width: 60, type: 'img'},
+        {prop: 'title', label: '分类名'},
+        {prop: 'icon', label: 'icon', width: 60, type: 'img'},
         {prop: 'linkUrl', label: '链接', type: 'link'},
         {prop: 'effectiveTime', label: '上线时间', width: 180, filter: 'parseTime', sortable: true},
-        {prop: 'ineffectiveTime', label: '下线时间', width: 180, filter: 'parseTime'},
         {prop: 'introduction', label: '简介'},
         {label: '操作', slotName: 'handle', width: 160}
       ],
