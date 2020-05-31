@@ -13,11 +13,9 @@ export default {
   },
   created: [
     function (params) {
-      // console.log(1)
     }
   ],
   mounted () {
-    console.log(this.$set)
   }
 }
 </script>
