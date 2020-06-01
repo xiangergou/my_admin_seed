@@ -52,7 +52,7 @@
           v-if="showExpand"
           type="expand"
           width="40">
-          <template slot-scope="scope">
+          <template>
             <slot name="expandTable"/>
             <slot name="expandForm"/>
           </template>
@@ -60,7 +60,7 @@
         <el-table-column
           v-if="showSelection"
           type="selection"
-          width="40"/>
+          width="50"/>
         <el-table-column
           v-for="(column, columnIndex) in columns"
           :key="columnIndex"
@@ -158,7 +158,7 @@
 <script>
 import Vue from 'vue'
 import props from './props'
-import { service as fetch } from '@/utils/fetch'
+import { fetch } from '@/utils/fetch'
 import { ObjectMap, deepClone } from '@/utils'
 export default {
   name: 'FhtTablePagination',
@@ -315,7 +315,7 @@ export default {
           this.multipleSelectionAll = []
         }
       }).catch(error => {
-        console.log(error)
+        console.error(error)
         this.loading = false
       })
     },

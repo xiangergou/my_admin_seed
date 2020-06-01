@@ -55,4 +55,4 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+export const fetch = service

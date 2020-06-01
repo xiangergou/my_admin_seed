@@ -37,62 +37,23 @@
     </div>
     <div class="layout-container">
       <GridUnit
+        type="local"
+        :data="list"
         ref="refGridUnit"
         :columns="colModels"
-        :url="url"
-        :data-method="method"
-        :is-mock="isMock"
+        :is-mock="false"
         :form-options="formOptions"
-        :show-expand="true"
+        :show-expand="false"
         :show-selection="true"
         :selection-key="`exampleId`">
-        <template
-          slot="expandForm"
-          slot-scope="table_scope">
-          <el-form
-            label-position="left"
-            inline>
-            <el-form-item
-              v-for="(item, index) in expandColums"
-              :label="item.label"
-              :key="index">
-              <span>{{ item.prop }}</span>
-            </el-form-item>
-          </el-form>
-        </template>
-        <template
-          slot="handle"
-          slot-scope="scope">
-          <el-button
-            type="primary"
-            icon="el-icon-view"
-            size="small"
-            @click="handleView(scope.$index)">
-            再来一个表格吧
-          </el-button>
-        </template>
       </GridUnit>
-    </div>
-    <div class="dialog_example">
-      <el-dialog
-        :visible.sync="layer_show"
-        title="你知道的  这是第二个表格"
-        width="100%"
-        style="text-align: center;">
-        <GridUnit
-          ref="refGridUnit_view"
-          :columns="colModels_view"
-          :url="url"
-          :data-method="method"
-          :is-mock="isMock"
-          height="300px" />
-      </el-dialog>
     </div>
   </div>
 </template>
 <script>
 import GridUnit from '@/components/GridUnit/grid'
-import { exampleApi } from '@/api/example'
+import { getResourcesList } from '@/api'
+
 export default {
   name: 'ExampleGrid',
   components: {
@@ -110,65 +71,51 @@ export default {
         region: ''
       },
       colModels: [
-        {
-          prop: 'activityStatus',
-          label: '状态',
-          width: 80,
-          type: 'status',
-          unitFilters: {
-            renderStatusType (status) {
-              const statusMap = {
-                '1': 'info',
-                '2': 'success',
-                '3': 'danger'
-              }
-              return statusMap[status] || 'success'
-            },
-            renderStatusValue (status) {
-              const statusStrData = ['待上线', '已上线', '已下线']
-              return statusStrData[status - 1] || '已上线'
-            }
-          }
-        },
+        {prop: 'title', label: '书名'},
         {prop: 'title', label: '分类名'},
-        {prop: 'icon', label: 'icon', width: 60, type: 'img'},
-        {prop: 'linkUrl', label: '链接', type: 'link'},
-        {prop: 'effectiveTime', label: '上线时间', width: 180, filter: 'parseTime', sortable: true},
-        {prop: 'introduction', label: '简介'},
+        {prop: 'author', label: '作者'},
+        {prop: 'desc', label: '格式'},
+        {prop: 'desc', label: '简介'},
+        {prop: 'cover', label: 'cover', width: 60, type: 'img'},
+        // {prop: 'effectiveTime', label: '上线时间', width: 180, filter: 'parseTime', sortable: true},
+        {prop: 'introduction', label: '地址'},
         {label: '操作', slotName: 'handle', width: 160}
       ],
-      colModels_view: [
-        {prop: 'title', label: '标题'}
-      ],
-      expandColums: [
-        {prop: 'title', label: '标题'},
-        {prop: 'introduction', label: '简介'}
-      ],
-      url: exampleApi.requestPath,
-      method: exampleApi.queryMethod,
-      isMock: exampleApi.isMock
+      list: []
     }
   },
   computed: {
 
   },
+  created () {
+    this.getList()
+  },
   mounted () {
     /* 表格高度控制 */
     this.$nextTick(() => {
-      // const offsetTop = this.$refs.refGridUnit.$el.offsetTop || 140
-      // const pagenationH = 55
-      // const containerPadding = 20
-      // let temp_height = document.body.clientHeight - offsetTop - pagenationH - containerPadding
-      // this.tableHeight = temp_height > 300 ? temp_height : 300
-      // window.onresize = () => {
-      //   return (() => {
-      //     temp_height = document.body.clientHeight - offsetTop - pagenationH - containerPadding
-      //     this.tableHeight = this.tableHeight = temp_height > 300 ? temp_height : 300
-      //   })()
-      // }
+      const offsetTop = this.$refs.refGridUnit.$el.offsetTop || 140
+      const pagenationH = 55
+      const containerPadding = 20
+      let tempHeight = document.body.clientHeight - offsetTop - pagenationH - containerPadding
+      this.tableHeight = tempHeight > 300 ? tempHeight : 300
+      window.onresize = () => {
+        return (() => {
+          tempHeight = document.body.clientHeight - offsetTop - pagenationH - containerPadding
+          this.tableHeight = this.tableHeight = tempHeight > 300 ? tempHeight : 300
+        })()
+      }
     })
   },
   methods: {
+    getList () {
+      getResourcesList().then(res => {
+        console.log(JSON.parse(JSON.stringify(res)), 'res')
+        const data = JSON.parse(JSON.stringify(res))
+        console.log(data, 'data')
+        this.list.push(...data)
+        // this.booksList.push(...data)
+      })
+    },
     handleView (index) {
       this.$message.success('柏林爸爸' + index)
       this.layer_show = true

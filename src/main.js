@@ -7,9 +7,14 @@ import ElementUI from 'element-ui'
 import store from './store'
 // import './icons'
 import 'element-ui/lib/theme-chalk/index.css'
-
 require('./mock')
 require('./utils/permission.js')
+const AV = require('leancloud-storage')
+
+AV.init({
+  appId: 'AlWeYVtSToe0WIC9iWiVHLsQ-MdYXbMMI',
+  appKey: 'gC4mPTDAI5e5GriuORDNgED4'
+})
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false

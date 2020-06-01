@@ -5,7 +5,7 @@
  * @Last Modified time: 2019-01-14 21:22:07
  */
 
-import fetch from '@/utils/fetch'
+import { fetch } from '@/utils/fetch'
 
 export const loginApi = {
   /* 登录获取sessionId */
