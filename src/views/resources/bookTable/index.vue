@@ -1,26 +1,35 @@
 <template>
   <div>
+    <header>
+      <el-button type="primary" size="mini" @click="showDialog">新建数据</el-button>
+    </header>
     <div class="layout_pageHeader">
       <el-form
         :inline="true"
         :model="formOptions"
         size="small">
-        <el-form-item label="审批人">
-          <el-input
-            v-model="formOptions.user"
-            placeholder="审批人"/>
+        <el-form-item label="分类">
+          <el-cascader :options="options" clearable :props="{ expandTrigger: 'hover' }"></el-cascader>
         </el-form-item>
-        <el-form-item label="活动区域">
+        <el-form-item label="格式">
           <el-select
+            :clearable="true"
             v-model="formOptions.region"
             placeholder="活动区域">
             <el-option
-              label="区域一"
+              label="试题"
               value="上海"/>
             <el-option
-              label="区域二"
+              label="电子书"
               value="北京"/>
           </el-select>
+        </el-form-item>
+          <el-form-item label="日期">
+          <el-date-picker
+          v-model="value3"
+          type="year"
+          placeholder="选择年">
+         </el-date-picker>
         </el-form-item>
         <el-form-item>
           <el-button
@@ -48,22 +57,45 @@
         :selection-key="`exampleId`">
       </GridUnit>
     </div>
+    <!-- create -->
+    <create :dialogFormVisible.sync="dialogFormVisible" />
   </div>
 </template>
 <script>
 import GridUnit from '@/components/GridUnit/grid'
+import create from './components/create'
 import { getResourcesList } from '@/api'
 
 export default {
   name: 'ExampleGrid',
   components: {
-    GridUnit
+    GridUnit,
+    create
   },
   filters: {
 
   },
   data () {
     return {
+      dialogFormVisible: false,
+      value3: '',
+      options: [{
+        value: 'zhinan',
+        label: '考研资料',
+        children: [{
+          value: 'shejiyuanze',
+          label: '政治'
+        }, {
+          value: 'shejiyuanze',
+          label: '设计原则'
+        }, {
+          value: 'shejiyuanze',
+          label: '设计原则'
+        }, {
+          value: 'shejiyuanze',
+          label: '设计原则'
+        }]
+      }],
       layer_show: false,
       tableHeight: 300,
       formOptions: {
@@ -115,6 +147,9 @@ export default {
         this.list.push(...data)
         // this.booksList.push(...data)
       })
+    },
+    showDialog () {
+      this.dialogFormVisible = true
     },
     handleView (index) {
       this.$message.success('柏林爸爸' + index)
