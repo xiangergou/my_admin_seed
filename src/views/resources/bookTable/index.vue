@@ -77,7 +77,7 @@ export default {
   },
   data () {
     return {
-      dialogFormVisible: false,
+      dialogFormVisible: true,
       value3: '',
       options: [{
         value: 'zhinan',
