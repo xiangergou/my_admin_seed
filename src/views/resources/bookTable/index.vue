@@ -64,6 +64,11 @@
             @click="handleView(scope.$index)">
             删除
           </el-button>
+            <el-button type="success" size="small">
+              <a :href="scope.row.url" download target="_blank">
+              下载
+              </a>
+          </el-button>
         </template>
       </GridUnit>
     </div>
@@ -119,7 +124,7 @@ export default {
         {prop: 'date', label: '年份'},
         {prop: 'format', label: '格式'},
         {prop: 'author', label: '贡献者'},
-        {label: '操作', slotName: 'handle', width: 160}
+        {label: '操作', slotName: 'handle', width: 260}
       ],
       list: []
     }

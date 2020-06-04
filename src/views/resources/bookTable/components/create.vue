@@ -2,7 +2,7 @@
  * @Description:
  * @LastEditors: liuxia
  * @Date: 2020-06-02 18:12:31
- * @LastEditTime: 2020-06-04 16:54:10
+ * @LastEditTime: 2020-06-04 18:25:27
 -->
 <template>
   <div>
@@ -78,12 +78,14 @@ export default {
       file.metaData('discipline', discipline)
       file.metaData('format', format)
       file.save({
+        keepFileName: true,
         onprogress: (progress) => {
           console.log(progress)
         }
       }).then((file) => {
         const fileName = file.get('name')
         this.fileList.push({name: fileName, url: file.get('url')})
+        console.log(file.get('url'))
       }, (error) => {
         console.log(error, '222')
       })
