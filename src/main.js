@@ -7,6 +7,13 @@ import ElementUI from 'element-ui'
 import store from './store'
 // import './icons'
 import 'element-ui/lib/theme-chalk/index.css'
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload, {
+  loading: 'https://pic.cnblogs.com/face/1446455/20190911163633.png' // 加载中图片，一定要有，不然会一直重复加载占位图
+  // error: require('img/error.png') // 加载失败图片
+})
+
 require('./mock')
 require('./utils/permission.js')
 const AV = require('leancloud-storage')

@@ -55,12 +55,23 @@
         :show-expand="false"
         :show-selection="true"
         :selection-key="`exampleId`">
+        <template slot="handle" slot-scope="scope">
+          <el-button type="primary" size="small"
+            @click="handleView(scope.$index)">
+            编辑
+          </el-button>
+          <el-button type="danger" size="small"
+            @click="handleView(scope.$index)">
+            删除
+          </el-button>
+        </template>
       </GridUnit>
     </div>
     <!-- create -->
     <create :dialogFormVisible.sync="dialogFormVisible" />
   </div>
 </template>
+
 <script>
 import GridUnit from '@/components/GridUnit/grid'
 import create from './components/create'
@@ -77,7 +88,7 @@ export default {
   },
   data () {
     return {
-      dialogFormVisible: true,
+      dialogFormVisible: false,
       value3: '',
       options: [{
         value: 'zhinan',
@@ -103,14 +114,11 @@ export default {
         region: ''
       },
       colModels: [
-        {prop: 'title', label: '书名'},
-        {prop: 'title', label: '分类名'},
-        {prop: 'author', label: '作者'},
-        {prop: 'desc', label: '格式'},
-        {prop: 'desc', label: '简介'},
-        {prop: 'cover', label: 'cover', width: 60, type: 'img'},
-        // {prop: 'effectiveTime', label: '上线时间', width: 180, filter: 'parseTime', sortable: true},
-        {prop: 'introduction', label: '地址'},
+        {prop: 'fileName', label: '书名', width: 300},
+        {prop: 'discipline', label: '学科'},
+        {prop: 'date', label: '年份'},
+        {prop: 'format', label: '格式'},
+        {prop: 'author', label: '贡献者'},
         {label: '操作', slotName: 'handle', width: 160}
       ],
       list: []
@@ -142,10 +150,15 @@ export default {
     getList () {
       getResourcesList().then(res => {
         console.log(JSON.parse(JSON.stringify(res)), 'res')
-        const data = JSON.parse(JSON.stringify(res))
+        const data = JSON.parse(JSON.stringify(res)).map(item => {
+          return {
+            ...item.metaData,
+            url: item.url,
+            id: item.objectId
+          }
+        })
         console.log(data, 'data')
         this.list.push(...data)
-        // this.booksList.push(...data)
       })
     },
     showDialog () {
