@@ -8,25 +8,32 @@
         :inline="true"
         :model="formOptions"
         size="small">
-        <el-form-item label="分类">
-          <el-cascader :options="options" clearable :props="{ expandTrigger: 'hover' }"></el-cascader>
+        <el-form-item label="学科分类">
+          <el-select v-model="formOptions.disciplineId" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.key"
+              :value="item.value">
+            </el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="格式">
           <el-select
             :clearable="true"
-            v-model="formOptions.region"
-            placeholder="活动区域">
+            v-model="formOptions.format"
+            placeholder="请选择格式">
             <el-option
-              label="试题"
-              value="上海"/>
+              label=".pdf"
+              value=".pdf"/>
             <el-option
-              label="电子书"
-              value="北京"/>
+              label=".doc"
+              value=".doc"/>
           </el-select>
         </el-form-item>
-          <el-form-item label="日期">
+        <el-form-item label="年份">
           <el-date-picker
-          v-model="value3"
+          v-model="formOptions.date"
           type="year"
           placeholder="选择年">
          </el-date-picker>
@@ -56,67 +63,52 @@
         :show-selection="true"
         :selection-key="`exampleId`">
         <template slot="handle" slot-scope="scope">
-          <el-button type="primary" size="small"
-            @click="handleView(scope.$index)">
-            编辑
+          <el-button type="primary" size="small">
+            <a :href="scope.row.url" download target="_blank">
+            下载
+            </a>
           </el-button>
           <el-button type="danger" size="small"
             @click="handleView(scope.$index)">
             删除
           </el-button>
-            <el-button type="success" size="small">
-              <a :href="scope.row.url" download target="_blank">
-              下载
-              </a>
-          </el-button>
         </template>
       </GridUnit>
     </div>
     <!-- create -->
-    <create :dialogFormVisible.sync="dialogFormVisible" />
+    <create :createDialogVisible.sync="createDialogVisible" />
+    <edit :editDialogVisible.sync="editDialogVisible" :form="detailData"/>
   </div>
 </template>
 
 <script>
 import GridUnit from '@/components/GridUnit/grid'
 import create from './components/create'
+import edit from './components/edit'
 import { getResourcesList } from '@/api'
-
+import { options } from './config'
+import AV from 'leancloud-storage'
 export default {
   name: 'ExampleGrid',
   components: {
     GridUnit,
-    create
-  },
-  filters: {
-
+    create,
+    edit
   },
   data () {
     return {
-      dialogFormVisible: false,
+      value: '',
+      options: options,
+      detailData: {},
+      createDialogVisible: false,
+      editDialogVisible: false,
       value3: '',
-      options: [{
-        value: 'zhinan',
-        label: '考研资料',
-        children: [{
-          value: 'shejiyuanze',
-          label: '政治'
-        }, {
-          value: 'shejiyuanze',
-          label: '设计原则'
-        }, {
-          value: 'shejiyuanze',
-          label: '设计原则'
-        }, {
-          value: 'shejiyuanze',
-          label: '设计原则'
-        }]
-      }],
       layer_show: false,
       tableHeight: 300,
       formOptions: {
-        user: '',
-        region: ''
+        disciplineId: '',
+        format: '',
+        date: ''
       },
       colModels: [
         {prop: 'fileName', label: '书名', width: 300},
@@ -162,20 +154,34 @@ export default {
             id: item.objectId
           }
         })
-        console.log(data, 'data')
         this.list.push(...data)
       })
     },
     showDialog () {
-      this.dialogFormVisible = true
+      this.createDialogVisible = true
     },
     handleView (index) {
-      this.$message.success('柏林爸爸' + index)
-      this.layer_show = true
+      this.detailData = this.list[index]
+      this.editDialogVisible = true
     },
     handleSearch () {
-      this.$nextTick(() => {
-        this.$refs.refGridUnit.searchHandler()
+      const query = new AV.Query('_File')
+      for (let key in this.formOptions) {
+        if (this.formOptions[key]) {
+          query.equalTo(`metaData.${key}`, this.formOptions[key])
+        }
+      }
+      query.find().then(res => {
+        const data = JSON.parse(JSON.stringify(res)).map(item => {
+          return {
+            ...item.metaData,
+            url: item.url,
+            id: item.objectId
+          }
+        })
+        console.log(data, 'data')
+        this.list = []
+        console.log(this.list)
       })
     },
     getMultipleSelectionAll () {

@@ -6,7 +6,7 @@
 -->
 <template>
   <div>
-    <el-dialog title="新录资源" :visible="dialogFormVisible"  @close="OnClose()">
+    <el-dialog title="新录资源" :visible="createDialogVisible"  @close="OnClose()">
       <el-form :model="form">
         <el-form-item label="资源上传" :label-width="formLabelWidth">
           <el-upload
@@ -35,11 +35,12 @@
 </template>
 
 <script>
+import { options } from '../config'
 const AV = require('leancloud-storage')
 export default {
   name: 'create',
   props: {
-    dialogFormVisible: true
+    createDialogVisible: true
   },
   data () {
     return {
@@ -60,12 +61,12 @@ export default {
       }],
       value: []
       // accept: 'application/pdf, application/wps-writer'
-      // dialogFormVisible: true
+      // createDialogVisible: true
     }
   },
   methods: {
     OnClose () {
-      this.$emit('update:dialogFormVisible', false)
+      this.$emit('update:createDialogVisible', false)
     },
     beforeUpload (item) {
       const fileName = item.name.substring(0, item.name.lastIndexOf('.'))
@@ -76,6 +77,7 @@ export default {
       file.metaData('author', '张三')
       file.metaData('date', date)
       file.metaData('discipline', discipline)
+      file.metaData('disciplineId', this.getDisciplineId(discipline))
       file.metaData('format', format)
       file.save({
         keepFileName: true,
@@ -89,6 +91,10 @@ export default {
       }, (error) => {
         console.log(error, '222')
       })
+    },
+    getDisciplineId (discipline) {
+      // 1000表 其他
+      return options.filter(item => item.key === discipline)[0].value || '1000'
     },
     handleSuccess (res) {
       console.log(res, this.fileList, 'res')

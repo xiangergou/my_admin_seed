@@ -6,37 +6,56 @@
 -->
 <template>
   <div>
-    <el-dialog title="新录资源" :visible="dialogFormVisible"  @close="OnClose()">
-      <el-form :model="form">
-        <el-form-item label="资源上传" :label-width="formLabelWidth">
-          <el-upload
-            class="upload-demo"
-            action="#"
-            :on-preview="handlePreview"
-            :before-upload="beforeUpload"
-            multiple
-            :on-exceed="handleExceed"
-            :on-change="handleSuccess"
-            :file-list="fileList">
-            <el-button size="small" type="primary">点击上传</el-button>
-            <div slot="tip" class="el-upload__tip">
-              <p>请按照"年份-学科-试卷名"的格式命名</p>
-              <p>如 ”2015-政治-全国研究生开始书数农试题“</p>
-              </div>
-          </el-upload>
+    <el-dialog title="编辑资源" :visible="editDialogVisible"  @close="OnClose">
+      <el-form :model="form" label-width="80px" label-position="left">
+        <el-form-item label="文件名" prop="pass">
+          <el-input v-model="form.fileName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="学科" prop="checkPass">
+          <el-input v-model="form.discipline" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="年份" prop="age">
+          <el-input v-model.number="form.date"></el-input>
+        </el-form-item>
+           <el-form-item label="格式">
+          <el-input v-model.number="form.format" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="贡献者">
+          <el-input v-model.number="form.author" disabled></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="OnClose">取 消</el-button>
-        <el-button type="primary" @click="OnClose">确 定</el-button>
+        <el-button type="primary" @click="handleToConfirm">确 定</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
+const AV = require('leancloud-storage')
+
 export default {
-  name: 'edit'
+  name: 'edit',
+  props: {
+    editDialogVisible: false,
+    form: {}
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    OnClose () {
+      this.$emit('update:editDialogVisible', false)
+    },
+    handleToConfirm () {
+      console.log(this.form.id)
+      const todo = AV.Object.createWithoutData('_File', '5ed8cb546f65cd000876365f')
+      todo.set('name', 'fuck')
+      todo.save()
+    }
+  }
 }
 </script>
 
