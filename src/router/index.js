@@ -50,6 +50,10 @@ export const asyncRouterMap = [
       name: '文档数据',
       path: 'booksTable',
       component: () => import('@/views/resources/bookTable/index')
+    }, {
+      name: '资源审核',
+      path: 'audit',
+      component: () => import('@/views/resources/audit/index')
     }]
   },
   {
